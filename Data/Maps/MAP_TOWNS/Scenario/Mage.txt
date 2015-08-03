@@ -1,0 +1,13 @@
+################################################################################
+#                                  Mage                                        #
+################################################################################
+#  You studied for many years in the school of magic and teachers taught you   #
+#                       everything you know yourself.                          #
+#                    You can not wait to try their hand.                       #
+#        Once you find a book in the library magicians "Dragon Force",         #
+#  from which you learn that in the distant lands of the Dragon                #
+# lives a mighty dragon who guards the huge reserves of gold and armor,        #
+#                           has magical powers.                                #
+#                 Since childhood you dreamed of such glory,                   #
+#                  so you decide to go on a long adventure!                    #
+################################################################################

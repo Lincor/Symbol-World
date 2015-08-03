@@ -1,0 +1,6 @@
+NPC.Spawn = 100,100
+NPC.Skin = N
+DrawDialog = ESCALUS_DIALOG.dsw
+DrawText = ESCALUS_TEXT.dsw
+DrawPars = Data/NPC/NPC_ESCALUS/PARS/ESCALUS_PARS.dsw
+LoadQuests = Data/NPC/NPC_ESCALUS/Quests/QUEST_01.qst

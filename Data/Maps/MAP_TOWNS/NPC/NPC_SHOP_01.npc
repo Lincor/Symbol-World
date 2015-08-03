@@ -1,0 +1,8 @@
+Draw.ShopDialog = Shop_Dialog_01.txt
+Shop.AddItem = Data/Items/Wood_Sword.txt
+Shop.AddItem = Data/Items/Stone_Sword.txtt
+Shop.AddItem = Data/Items/Wood_Knife.txt
+Shop.AddItem = Data/Items/Stone_Knife.txt
+Shop.Additem = Data/Items/Wood_Bow.txt
+Shop.AddItem = Data/Items/Stone_Bow.txt
+Shop.AddItem = Data/Items/Wood_Boots.txt

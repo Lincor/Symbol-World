@@ -1,0 +1,13 @@
+################################################################################
+#                                  Warrior                                     #
+################################################################################
+#                     You are simple city guard.                               #
+#                You've always dreamed of adventures.                          #
+#Once you hear how your friends are talking about some kind of Dragon Mountain.#
+#  inhabited by very strong dragon who could not win even the greatest heroes. #
+#            The path to it is longer and full of danger,                      #
+#         but you realize that you want to follow this path                    #
+#slay the dragon and get fame and respect. You're strong and courageous        #
+#                    but you have to learn a lot,                              #
+#                because you know that you can win.                            #
+################################################################################

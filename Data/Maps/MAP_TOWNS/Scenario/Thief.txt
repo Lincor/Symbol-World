@@ -1,0 +1,10 @@
+################################################################################
+#                                    Thief                                     #
+################################################################################
+#               The native land you are known as a great thief,                #
+#                     but you always want something more.                      #
+#                 Once, during a routine visit to the prison,                  #
+#  the guards of the conversation you are eavesdropping on Dragon Mountain,    #
+#  located very far away, which holds untold wealth are owned by the dragon.   #
+#         This is your chance - become the greatest thief in the history!      #
+################################################################################

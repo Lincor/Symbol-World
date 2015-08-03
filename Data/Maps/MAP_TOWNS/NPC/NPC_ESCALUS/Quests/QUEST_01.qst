@@ -1,0 +1,4 @@
+Quest.SetTime = 3:00
+Quest.Point = MAP_TOWN_LIZARD
+Quest.Point = MAP_TOWN_FROG
+Quest.Point = MAP_TOWN_SKELETONS
