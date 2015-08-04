@@ -37,6 +37,15 @@ TYPE NPC
     Loot AS Item
 END TYPE
 
+TYPE Command
+    Spawn AS STRING * 15
+    GiveItem AS Item
+    Dead AS STRING * 15
+    LevelUP AS INTEGER
+    SetTime AS STRING * 15
+    GoMap AS STRING * 15
+END TYPE
+
 COMMON SHARED MAPX%
 COMMON SHARED MAPY%
 COMMON SHARED HH%
@@ -86,6 +95,9 @@ _SNDVOL wav1&, 0.7
 
 mp31& = _SNDOPEN("Data/Music/Menu/Intro.mp3", "vol")
 _SNDVOL mp31&, 0.7
+
+wav2& = _SNDOPEN("Data/Sounds/LevelUP.wav", "sync,vol")
+_SNDVOL wav2&, 0.7
 
 IF NOT _SNDPLAYING(mp31&) THEN
     _SNDPLAY mp31&
@@ -203,27 +215,30 @@ END IF
 Game:
 Player.Health = 100 'Player HP
 Player.Level = 1 'Player level
+E% = 0
+NE% = 65
 
 COLOR 15, 0
 
 DO
     CLS
 
+    CALL EXP_System
     COLOR 7: CALL RenderMap
 
     COLOR 15
 
     PRINT "##################################INFORMATION###################################"
-    PRINT "#    HP:            Race:                                       Time:  0:00    #"
-    PRINT "#    MP:            Class:                                                     #"
+    PRINT "#    HP:            Level:                                      Time:  0:00    #"
+    PRINT "#    MP:            EXP  :                                                     #"
     PRINT "################################################################################"
 
     _PRINTSTRING (60, 15), STR$(Player.Health)
     _PRINTSTRING (370, 15), "Gold: " + STR$(Player.Level)
-    _PRINTSTRING (230, 15), Player.Race
+    _PRINTSTRING (230, 15), STR$(Player.Level)
     _PRINTSTRING (60, 30), STR$(MP%)
     _PRINTSTRING (370, 30), "Name: " + Player.Name
-    _PRINTSTRING (230, 30), Player.Class
+    _PRINTSTRING (230, 30), STR$(E%) + "/" + STR$(NE%)
 
     _PRINTSTRING (0, 360), "#####################################LOG########################################"
     _PRINTSTRING (0, 375), "#                                                                              #"
@@ -267,7 +282,7 @@ DO
                 MAPX% = MAPX% - 1
             CASE CHR$(73): DisplayInventory
             CASE CHR$(13):
-                LOCATE 29, 10: INPUT "", COM$
+                LOCATE 29, 10: INPUT "", COM$: CALL Log_Add(COM$)
             CASE CHR$(27): END
         END SELECT
 
@@ -290,7 +305,7 @@ DO
 LOOP
 
 Errors:
-'Ydalil, a to naxui oni komy y sdalis.
+'Ydalil, a to naxui oni komy sdalis.
 'Lucshe suka yvidet ekran smerti,  chem "ARRAY OF OUT!"
 'Da.
 
@@ -522,9 +537,6 @@ SUB DisplayFile (Path$, Mode%, Speed%)
 IF _FILEEXISTS(Path$) THEN
     OPEN Path$ FOR INPUT AS #1
 
-    IF Mode% = 0 THEN
-    END IF
-
     REDIM SC$(0)
     DO WHILE NOT EOF(1)
         REDIM _PRESERVE SC$(I)
@@ -583,4 +595,59 @@ DO WHILE INKEY$ = ""
 
 LOOP
 
+END SUB
+
+SUB TextDraw (TY%, Text$, Col%)
+
+DO
+    COLOR Col%, 0
+
+    _PRINTSTRING (_WIDTH \ 2 - _PRINTWIDTH(Text$) \ 2, TY%), Text$
+
+    IF INKEY$ = CHR$(13) THEN EXIT DO
+LOOP
+
+END SUB
+
+SUB LVL_UP
+
+Player.Level = Player.Level + 1
+
+IF NOT _SNDPLAYING(wav2&) THEN _SNDPLAY wav2&
+
+D% = INT(RND * 6) + 1
+
+END SUB
+
+SUB EXP_System
+E% = 0
+NE% = 65
+
+IF E% > NE% THEN
+    CALL LVL_UP
+    NE% = NE% * 2
+    E% = 0
+END IF
+
+END SUB
+
+SUB Log_Add (Text$)
+LY% = 375
+
+_PRINTSTRING (15, LY%), Player.Name + ": " + Text$
+
+LY% = LY% + 15
+
+IF LY% > 420 THEN LY% = 375: CLS
+
+END SUB
+
+SUB Game_Over
+DO
+    CALL Log_Add("You are dead!" + Player.Name)
+    IF HP% < 0 OR HP% = 0 THEN
+        CALL TextDraw(200, "GAME OVER!", 4)
+    END IF
+    IF INKEY$ = CHR$(13) THEN EXIT DO
+LOOP
 END SUB
